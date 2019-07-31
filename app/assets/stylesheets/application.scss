@@ -17,14 +17,20 @@
 $primary-color: color("green", "darken-2") !default;
 @import 'materialize';
 
-
+/* header */
 #brand-logo {
   margin-left: 10px;
-  font-size: 60px;
+  font-size: 30px;
 }
 
 #nav-mobile {
   margin-right: 10px;
+}
+
+/* トップページ */
+
+body {
+  font-family: "ヒラギノ明朝 Pro","Hiragino Mincho Pro";
 }
 
 #index-banner {
@@ -32,9 +38,33 @@ $primary-color: color("green", "darken-2") !default;
   background-size: cover;
 }
 
-.no-pad-bot {
-  font-family: "ヒラギノ明朝 Pro","Hiragino Mincho Pro";
+#about {
+  width: 70%;
+  border-bottom: thin solid gray;
+  h4,p {
+    text-align: center;
+  }
+  p {
+    margin-bottom: 40px;
+    background: linear-gradient(transparent 70%, yellow 70%);
+  }
+}
+
+#rank {
+  width: 70%;
+  border-bottom: thin solid gray;
+  h4 {
+    text-align: left;
+  }
+}
+
+#people {
+  width: 70%;
 }
 
 /* footer */
-
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
