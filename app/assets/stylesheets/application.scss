@@ -28,6 +28,9 @@ $primary-color: color("green", "darken-2") !default;
 }
 
 /* トップページ */
+html{
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: "ヒラギノ明朝 Pro","Hiragino Mincho Pro";
@@ -41,6 +44,8 @@ body {
 #about {
   width: 70%;
   border-bottom: thin solid gray;
+  margin-top: -50px;
+  padding-top: 100px;
   h4,p {
     text-align: center;
   }
