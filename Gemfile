@@ -6,14 +6,20 @@ gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.2.0'
 gem 'coffee-rails', '4.2.2'
-gem 'jquery-rails', '4.3.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'mysql2'
 gem 'dotenv-rails'
 gem 'rb-readline'
-gem 'bootstrap-sass', '3.3.7'
+
+#materialize
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons' 
+gem 'jquery-rails'
+
+#暗号化
 gem 'bcrypt', '3.1.12'
+
 #gem 'faker', '1.7.3'
 gem 'faker-okinawa'
 gem 'will_paginate', '3.1.6'
