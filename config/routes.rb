@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-  get 'password_resets/edit'
   root "top#index"
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -11,4 +9,5 @@ Rails.application.routes.draw do
   post 'users/:id', to: 'users#update'#あとでRESTfulに直す
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  post 'password_resets/:id', to: 'password_resets#update'
 end
