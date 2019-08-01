@@ -1,12 +1,8 @@
 <div class="row">
   <div class="col s12 m12 offset-m3">
     <div class="card-panel z-depth-5" id="body">
-      <%= form_tag("/login", id: "formValidate") do %>
-        <h4 class="center">ログイン</h4>
-        <p>まだ登録していない方は
-          <a href="/signup">こちら</a>
-          から登録してください。
-        </p>
+      <%= form_tag("/password_resets", id: "formValidate") do %>
+        <h4 class="center">パスワード再設定</h4>
         <div class="row">
           <form class="col s12">
 
@@ -18,24 +14,10 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate" data-length="16" name="password" value="<%= @password %>">
-                <label for="password">パスワード</label>
-                <%= link_to "パスワードを忘れた方", new_password_reset_path %>
-              </div>
-            </div>
-
-            <label>
-              <input type="checkbox" name="remember_me">
-              <span>Remember me on this computer</span>
-            </label>
-            <br><br>
-
-            <button class="btn waves-effect waves-light center" type="submit" name="action">ログイン
+            <button class="btn waves-effect waves-light center" type="submit" name="action">送信
                <i class="fa fa-sign-in right"></i>
              </button>
+
           </form>
         </div>
       <% end %>
@@ -50,11 +32,6 @@
         required: true,
         email:true,
         maxlength: 255
-      },
-      password: {
-        required: true,
-        minlength: 6,
-        maxlength: 16
       }
     },
     messages: {
@@ -62,11 +39,6 @@
              required: "メールアドレスを入力してください",
              email: "不正なフォーマットです",
              maxlength: "255文字以内で指定してください"
-           },
-           password:{
-             required: "パスワードを入力してください",
-             minlength: "6~16文字で指定してください",
-             maxlength: "6~16文字で指定してください"
            }
        },
        errorElement : 'div',

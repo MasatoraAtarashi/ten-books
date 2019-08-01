@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col s12 m12 offset-m3">
+    <div class="card-panel z-depth-5" id="body">
+      <%= form_tag("/password_resets/#{params[:id]}", id: "formValidate") do %>
+        <h4 class="center">新規登録</h4>
+        <div class="row">
+          <form class="col s12">
+
+            <%= hidden_field_tag :email, @user.email %>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="password" type="password" class="validate" data-length="16" name="password">
+                <label for="password">パスワード</label>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">confirmation_number</i>
+                <input id="passwordConfirm" type="password" data-length="16" name="password_confirmation">
+                <label id="lblPasswordConfirm" for="passwordConfirm" data-error="Password not match" data-success="Password Match">パスワード(確認)</label>
+
+              </div>
+            </div>
+
+            <button class="btn waves-effect waves-light center" type="submit" name="action">登録
+               <i class="fa fa-sign-in right"></i>
+             </button>
+          </form>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#formValidate").validate({
+    rules: {
+      password: {
+        required: true,
+        minlength: 6,
+        maxlength: 16
+      },
+      password_confirmation: {
+        required: true,
+        minlength: 6,
+        maxlength: 16,
+        equalTo: "#password"
+      }
+    },
+    messages: {
+           password:{
+             required: "パスワードを入力してください",
+             minlength: "6~16文字で指定してください",
+             maxlength: "6~16文字で指定してください"
+           },
+           password_confirmation:{
+             required: "パスワードを入力してください",
+             minlength: "6~16文字で指定してください",
+             maxlength: "6~16文字で指定してください",
+             equalTo: "パスワードが一致しません"
+           },
+       },
+       errorElement : 'div',
+       errorPlacement: function(error, element) {
+         error.css('color', 'red');
+         var placement = $(element).data('error');
+         if (placement) {
+           $(placement).append(error)
+         } else {
+           error.insertAfter(element);
+         }
+       }
+
+  });
+</script>
