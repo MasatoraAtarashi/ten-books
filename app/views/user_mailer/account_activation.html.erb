@@ -3,10 +3,10 @@
 <p>
 登録を受け付けました。
 
-下記URLをクリックしていただくか、ブラウザのアドレス欄にコピー＆ペーストして、
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
-
+下記URLをクリックしていただいて、
+<br><br>
+<%= link_to edit_account_activation_url(@user.activation_token, email: @user.email), edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<br><br>
 メールアドレス認証を行ってください。
 
 ※URLが2行に分かれている場合1行目と2行目をあわせてください。
