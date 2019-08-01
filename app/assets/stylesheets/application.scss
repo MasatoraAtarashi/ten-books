@@ -73,3 +73,9 @@ footer {
   margin: 0;
   padding: 0;
 }
+
+#toast-container {
+    min-width: 10%;
+    right: 50%;
+    transform: translateX(50%);
+}

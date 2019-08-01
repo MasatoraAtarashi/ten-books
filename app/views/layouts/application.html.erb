@@ -29,6 +29,17 @@
         </div>
       </nav>
     </div>
+
+    <!-- フラッシュメッセージ -->
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |key, value| %>
+          M.toast({html: '<%= value %>'})
+        <% end %>
+      </script>
+    <% end %>
+
+
     <%= yield %>
     <%= debug(params) if Rails.env.development? %>
   </body>
