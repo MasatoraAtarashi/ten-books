@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :users
   #あとでRESTfulに直す
   post 'users/:id', to: 'users#update'
+  resources :account_activations, only: [:edit]
 end

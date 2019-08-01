@@ -14,6 +14,8 @@ class UsersController < ApplicationController
    def create
     @user = User.new(user_params)
     if @user.save
+      @user.send_activation_email
+      flash[:info] = "登録メールアドレス宛てにメールアドレス認証のメールを送信しました。メールの内容をご確認の上、メールアドレス認証を行ってください。"
       log_in @user
       flash[:success] = "ようこそ！会員登録ありがとうございます！"
       redirect_to @user

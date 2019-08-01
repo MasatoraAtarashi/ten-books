@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-  
+
   # 無効なユーザーに対するテスト
   test "invalid signup information" do
     get signup_path
