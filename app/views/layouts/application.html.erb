@@ -22,9 +22,20 @@
         <div class="nav-wrapper">
           <%= link_to "オナログ", root_path, id: "brand-logo"%>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/#about">about</a></li>
-            <li><a href="/signup">signup</a></li>
-            <li><a href="#">login</a></li>
+            <% if logged_in? %>
+            <!-- Dropdown Trigger -->
+            <a class='dropdown-trigger' href='#' data-target='dropdown1'><i class="large material-icons prefix" id="account_box">account_box</i></a>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><%= link_to "ホーム", current_user %></li>
+              <li><%= link_to "設定", '#' %></li>
+              <li class="divider" tabindex="-1"></li>
+              <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+            </ul>
+            <% else %>
+              <li><a href="/#about">about</a></li>
+              <li><a href="/signup">signup</a></li>
+              <li><a href="/login">login</a></li>
+            <% end %>
           </ul>
         </div>
       </nav>
@@ -44,3 +55,10 @@
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems);
+  });
+</script>
