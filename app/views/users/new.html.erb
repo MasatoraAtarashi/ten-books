@@ -1,45 +1,113 @@
 <div class="row">
   <div class="col s12 m12 offset-m3">
     <div class="card-panel z-depth-5" id="body">
-      <h4 class="center">新規登録</h4>	 
-      <div class="row">
+      <%= form_tag("/signup", id: "formValidate") do %>
+        <h4 class="center">新規登録</h4>
+        <div class="row">
+          <form class="col s12">
 
-        <form class="col s12">
-
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">account_circle</i>
-              <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="first_name" type="text" class="validate" name="name" id="name">
+                <label for="first_name">ユーザー名</label>
+              </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">account_circle</i>
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-              <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="email" type="email" class="validate" name="email" id="email">
+                <label for="email">メールアドレス</label>
+              </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">account_circle</i>
-              <input id="password" type="password" class="validate" data-length="16">
-              <label for="password">Password</label>
-            </div>
-          </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="password" type="password" class="validate" data-length="16" name="password">
+                <label for="password">パスワード</label>
 
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">account_circle</i>
-              <input id="passwordConfirm" type="password" data-length="16">
-              <label id="lblPasswordConfirm" for="passwordConfirm" data-error="Password not match" data-success="Password Match">Password (Confirm)</label>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="passwordConfirm" type="password" data-length="16" name="password_confirmation">
+                <label id="lblPasswordConfirm" for="passwordConfirm" data-error="Password not match" data-success="Password Match">パスワード(確認)</label>
+
+              </div>
+            </div>
+
+            <button class="btn waves-effect waves-light center" type="submit" name="action">登録
+               <i class="fa fa-sign-in right"></i>
+             </button>
+          </form>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#formValidate").validate({
+    rules: {
+      name: {
+        required: true,
+        minlength: 3,
+        maxlength: 16
+      },
+      email: {
+        required: true,
+        email:true,
+        maxlength: 255
+      },
+      password: {
+        required: true,
+        minlength: 6,
+        maxlength: 16
+      },
+      password_confirmation: {
+        required: true,
+        minlength: 6,
+        maxlength: 16,
+        equalTo: "#password"
+      }
+    },
+    messages: {
+           name:{
+               required: "ユーザー名を入力してください",
+               minlength: "3~16文字で指定してください",
+               maxlength: "3~16文字で指定してください"
+           },
+           email:{
+             required: "メールアドレスを入力してください",
+             email: "不正なフォーマットです",
+             maxlength: "255文字以内で指定してください"
+           },
+           password:{
+             required: "パスワードを入力してください",
+             minlength: "6~16文字で指定してください",
+             maxlength: "6~16文字で指定してください"
+           },
+           password_confirmation:{
+             required: "パスワードを入力してください",
+             minlength: "3~16文字で指定してください",
+             maxlength: "3~16文字で指定してください",
+             equalTo: "パスワードが一致しません"
+           },
+       },
+       errorElement : 'div',
+       errorPlacement: function(error, element) {
+         error.css('color', 'red');
+         var placement = $(element).data('error');
+         if (placement) {
+           $(placement).append(error)
+         } else {
+           error.insertAfter(element);
+         }
+       }
+
+  });
+</script>
