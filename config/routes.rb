@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users
+  #あとでRESTfulに直す
+  post 'users/:id', to: 'users#update'
 end
