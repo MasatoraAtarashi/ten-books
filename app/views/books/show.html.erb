@@ -6,6 +6,7 @@
         <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
         <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px"><%= book.title.truncate(40) unless book.title.nil? %>/<%= book.authors.truncate(24) unless book.authors.nil? %>/<%= book.published_date.truncate(24)unless book.published_date.nil? %>
         <%= form_tag(books_path, class: "right") do %>
+          <%= hidden_field_tag :id, params[:id] %>
           <%= hidden_field_tag :image_link, image_link %>
           <%= hidden_field_tag :title, book.title %>
           <%= hidden_field_tag :authors, book.authors %>
