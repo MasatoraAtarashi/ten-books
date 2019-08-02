@@ -5,7 +5,6 @@ class BooksController < ApplicationController
   def show
     @keyword = params[:id]
     @books = GoogleBooks.search(@keyword, {:count => 30}).to_a.paginate(page: params[:page], :per_page => 10)
-    store_location
   end
 
   # 本棚に本データを追加する(十冊を選ぶ)
@@ -17,12 +16,16 @@ class BooksController < ApplicationController
         redirect_to current_user
       else
         flash[:danger] = "登録に失敗しました"
-        redirect_back_or 'show'
+        redirect_to("/books/#{params[:id]}")
       end
     else
       flash[:danger] = "これ以上登録できません"
-      redirect_back_or 'show'
+      redirect_to("/books/#{params[:id]}")
     end
+  end
+
+  def destroy
+    
   end
 
   private
