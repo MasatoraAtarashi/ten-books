@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/mldoscar/will_paginate-materialize
+  revision: 2b92865cd303d8bee9455c9b529305c1a8c278eb
+  branch: master
+  specs:
+    will_paginate-materialize (1.0.0)
+      will_paginate (~> 3.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,8 +59,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
-    bootstrap-will_paginate (1.0.0)
-      will_paginate
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (1.2.2)
@@ -426,7 +432,6 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (= 3.1.12)
   bootsnap
-  bootstrap-will_paginate (= 1.0.0)
   byebug (= 9.0.6)
   carrierwave (= 1.2.2)
   coffee-rails (= 4.2.2)
@@ -457,6 +462,7 @@ DEPENDENCIES
   uglifier (= 3.2.0)
   web-console (= 3.5.1)
   will_paginate (= 3.1.6)
+  will_paginate-materialize!
 
 BUNDLED WITH
    2.0.2

@@ -1,0 +1,13 @@
+<ul class="collection with-header" id="collection-header">
+  <li class="collection-header"><h4>検索結果</h4></li>
+  <% @books.each do |book| %>
+    <li class="collection-item">
+      <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
+      <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px"><%= book.title.truncate(40) %>/<%= book.authors.truncate(24) %>/<%= book.published_date.truncate(24) %>
+      <%= form_tag(like_books_path, class: "right") do %>
+        <button class="btn waves-effect waves-light btn-small" id="search-button" type="submit" name="action">本棚に追加</button>
+      <% end %>
+    </li>
+  <% end %>
+  <%= will_paginate @books%>
+</ul>

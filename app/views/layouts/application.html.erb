@@ -25,13 +25,12 @@
             <% if logged_in? %>
               <!-- Seach box -->
               <li>
-                <%= form_tag("/books", id: "search-form") do %>
-                  <div class="input-field col s12">
+                <span class="col s12" id="search-form">
+                  <span class="input-field col s12">
                     <input type="textarea" id="search-field" placeholder="本のタイトル、著者名" name="keyword">
-                    <button class="btn waves-effect waves-light btn-small" id="search-button" type="submit" name="action">検索</button>
-                    <!-- <a id="search-button" class="waves-effect waves-light btn-small" type="submit" name="action">検索</a> -->
-                  </div>
-                <% end %>
+                    <a href="#" id="search-button" class="waves-effect waves-light btn-small">検索</a>
+                  </span>
+                </span>
               </li>
 
               <!-- Dropdown Trigger -->
@@ -71,5 +70,15 @@
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.dropdown-trigger');
     var instances = M.Dropdown.init(elems);
+  });
+
+  $(function() {
+    // テキストフォームを監視して入力があるたびに実行
+    $('#search-field').change(function() {
+        // テキストを取得
+        var param = $(this).val();
+        // リンクを書き換え
+        $('#search-button').attr('href', '/like_books/' + param);
+    });
   });
 </script>
