@@ -23,6 +23,7 @@ module SessionsHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
+    session.delete(:forwarding_url) if session[:forwarding_url]
     @current_user = nil
   end
 

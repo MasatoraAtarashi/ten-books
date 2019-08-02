@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { maximum: 16, minimum: 6 }, allow_nil: true
+  has_many :books, dependent: :destroy
   
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)

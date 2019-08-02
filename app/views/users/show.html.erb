@@ -1,4 +1,12 @@
-<%= @user.name %>
+<% @books.each do |book| %>
+  <li class="collection-item">
+    <% unless book.nil? %>
+      <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
+      <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px"><%= book.title.truncate(40) unless book.title.nil? %>/<%= book.authors.truncate(24) unless book.authors.nil? %>/<%= book.published_date.truncate(24)unless book.published_date.nil? %>
+    <% end %>
+  </li>
+<% end %>
+
 <% if current_user %>
   <% if current_user.admin? && !current_user?(@user) %>
     <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>

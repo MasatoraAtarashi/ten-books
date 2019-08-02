@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   post '/password_resets/:id', to: 'password_resets#update'
-  resources :like_books, only: [:show, :create, :update, :destroy]
+  resources :books, only: [:show, :create, :update, :destroy]
 end
