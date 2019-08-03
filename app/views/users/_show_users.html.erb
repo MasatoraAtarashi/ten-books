@@ -3,8 +3,12 @@
 
     <% @users.each do |user| %>
       <li class="collection-item avatar">
-        <img src="" alt="" class="circle">
+        <% user.picture? ? image_url = user.picture.url :  image_url = '/images/default.png' %>
+        <img src="<%= image_url %>" alt="" class="circle center-align">
         <span class="title"><%= link_to user.name, user %></span>
+        <p><%= user.job %><br>
+          登録者数: <%= user.likeds.count %>
+        </p>
       </li>
     <% end %>
   </ul>

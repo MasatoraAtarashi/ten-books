@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy, :likes]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :edit_image, :update_image]
   before_action :admin_user,     only: :destroy
 
   def show
@@ -39,6 +39,20 @@ class UsersController < ApplicationController
      end
    end
 
+   def edit_image
+     @user = User.find(params[:id])
+   end
+
+   def update_image
+     @user = User.find(params[:id])
+     if @user.update_attributes(fileupload_params)
+       flash[:success] = "プロフィール画像が更新されました"
+       redirect_to @user
+     else
+       render 'edit_image'
+     end
+   end
+
    def destroy
      User.find(params[:id]).destroy
      flash[:success] = "User deleted"
@@ -56,7 +70,11 @@ class UsersController < ApplicationController
 
    private
     def user_params
-      params.permit(:name, :email, :password, :password_confirmation, :comments)
+      params.permit(:name, :email, :password, :password_confirmation, :comments, :job)
+    end
+
+    def fileupload_params
+      params.require(:user).permit(:picture)
     end
 
     # 正しいユーザーかどうか確認

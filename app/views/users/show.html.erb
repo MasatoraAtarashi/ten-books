@@ -5,7 +5,17 @@
     <div class="container ">
       <br>
 
-      <p><%= @user.name %>さんの10冊</p>
+      <div class="center">
+
+      <ul class="collection center-align" id="profile">
+        <li class="collection-item avatar center-align" id="profile-item">
+          <% @user.picture? ? image_url = @user.picture.url :  image_url = '/images/default.png' %>
+          <img src="<%= image_url %>" alt="" class="circle center-align" id="profile-image">
+          <p><%= @user.name %>さん(<%= @user.job %>)の10冊</p>
+        </li>
+      <ul>
+      </div>
+
       <div class="row card" id="shelf">
         <% @books.each do |book| %>
           <% unless book.nil? %>
@@ -36,9 +46,6 @@
     </div>
 
     <%= render 'like_form' if logged_in? %>
-
-    <%= @user.likes.count %>
-    <%= @user.likeds.count %>
 
   <% if current_user %>
   <% if current_user.admin? && !current_user?(@user) %>

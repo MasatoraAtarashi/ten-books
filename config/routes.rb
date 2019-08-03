@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
   post '/users/:id', to: 'users#update'#patchをpostでやるため
+  get '/users/:id/image', to: 'users#edit_image'
+  patch '/users/:id/image', to: 'users#update_image'
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   post '/password_resets/:id', to: 'password_resets#update'

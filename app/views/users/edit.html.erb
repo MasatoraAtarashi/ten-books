@@ -40,6 +40,24 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">work</i>
+                <input id="job" type="text" class="validate" name="job" value="<%= @user.job %>">
+                <label for="job" class="active">職業</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <ul class="collection" id="edit-collection">
+              <li class="collection-item avatar">
+                <% @user.picture? ? image_url = @user.picture.url :  image_url = '/images/default.png' %>
+                <img src="<%= image_url %>" alt="" class="circle">
+                プロフィール画像 : <%= link_to("変更はこちらから", "/users/#{@user.id}/image") %>
+              </li>
+              </ul>
+            </div>
+
             <button class="btn waves-effect waves-light center" type="submit" name="action">更新
                <i class="fa fa-sign-in right"></i>
              </button>
