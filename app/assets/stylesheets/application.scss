@@ -38,9 +38,14 @@ body,h4 {
 
 #search-form {
   position: fixed;
-  right: 120px;
+  right: 180px;
   height: 30px;
   margin-right: 0px;
+}
+
+#index_link {
+  position: fixed;
+  right: 100px;
 }
 
 #search-field {

@@ -45,6 +45,10 @@ class UsersController < ApplicationController
      redirect_to root_url
    end
 
+   def index
+     @users = User.all.to_a.paginate(page: params[:page], :per_page => 10)
+   end
+
    def likes
     @user = User.find(params[:id])
     @users = @user.likes.to_a.paginate(page: params[:page], :per_page => 10)
