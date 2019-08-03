@@ -33,7 +33,7 @@ class BooksController < ApplicationController
 
   private
     def books_params
-      params.permit(:image_link, :title, :authors, :published_date, :isbn, :comments)
+      params.permit(:image_link, :title, :authors, :published_date, :isbn, :comments, :info_link)
     end
 
     def correct_user

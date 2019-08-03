@@ -11,7 +11,7 @@
           <% unless book.nil? %>
           <div class="col s12 m5 l2">
             <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
-            <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card">
+            <a href="<%= book.info_link %>"><img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card"></a>
             <% if @user == current_user %>
               <%= link_to "登録解除", book, method: :delete, data: { confirm: "You sure?" } %>
             <% end %>

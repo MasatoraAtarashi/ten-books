@@ -12,6 +12,7 @@
           <%= hidden_field_tag :authors, book.authors %>
           <%= hidden_field_tag :published_date, book.published_date %>
           <%= hidden_field_tag :isbn, book.isbn %>
+          <%= hidden_field_tag :info_link, book.info_link %>
           <button class="btn waves-effect waves-light btn-small" id="search-button" type="submit" name="action">本棚に追加</button>
         <% end %>
       <% end %>
