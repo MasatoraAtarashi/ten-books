@@ -11,15 +11,9 @@
           <% unless book.nil? %>
           <div class="col s12 m5 l2">
             <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
-<<<<<<< HEAD
             <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card">
             <% if @user == current_user%>
               <%= link_to "登録解除", book_path(book), method: :delete, data: { confirm: "You sure?" } %>
-=======
-            <a href="<%= book.info_link %>"><img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card"></a>
-            <% if @user == current_user %>
-              <%= link_to "登録解除", book, method: :delete, data: { confirm: "You sure?" } %>
->>>>>>> books-api
             <% end %>
           </div>
           <% end %>
@@ -27,13 +21,6 @@
       </div>
 
       <div class="comments card-panel">
-<<<<<<< HEAD
-        <p>コメント</p>
-        <p><%= @user.comments %></p>
-      </div>
-    </div>
-
-=======
         <p>コメント(本棚の説明)</p>
         <% if current_user?(@user) %>
           <div class="input-field col s12">
@@ -48,8 +35,6 @@
       </div>
     </div>
 
-
->>>>>>> books-api
   <% if current_user %>
   <% if current_user.admin? && !current_user?(@user) %>
   <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
