@@ -17,3 +17,12 @@ User.create!(name:  "Example User",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+#like
+users = User.all
+user = users.first
+likes = users[2..50]
+likeds = users[3..40]
+likes.each { |liked| user.like(liked) }
+likeds.each { |liker| liker.like(user) }
+

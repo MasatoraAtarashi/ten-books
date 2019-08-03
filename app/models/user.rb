@@ -8,7 +8,15 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { maximum: 16, minimum: 6 }, allow_nil: true
   has_many :books, dependent: :destroy
-  
+  has_many :active_relationships, class_name: "Like",
+                   foreign_key: "user_id",
+                   dependent:   :destroy
+  has_many :likes, through: :active_relationships, source: :liked
+  has_many :passive_relationships, class_name: "Like",
+                   foreign_key: "liked_id",
+                   dependent:   :destroy
+  has_many :likeds, through: :passive_relationships, source: :user
+
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -66,6 +74,21 @@ class User < ApplicationRecord
   # パスワード再設定の期限が切れている場合はtrueを返す
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # 本棚にいいねする
+  def like(other_user)
+    likes << other_user
+  end
+
+  # 本棚のいいねを解除する
+  def unlike(other_user)
+    active_relationships.find_by(liked_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがいいねしてたらtrueを返す
+  def liking?(other_user)
+    likes.include?(other_user)
   end
 
   private

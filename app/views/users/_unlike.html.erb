@@ -1,0 +1,6 @@
+<%= form_for(current_user.active_relationships.find_by(liked_id: @user.id),
+             html: { method: :delete }) do |f| %>
+  <div class="row center">
+    <%= f.submit "お気に入り解除", class: "btn", id: "favorite-text" %>
+  </div>
+<% end %>

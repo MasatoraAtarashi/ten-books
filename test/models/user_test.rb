@@ -90,4 +90,17 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
   end
+
+  # like関連のメソッドをテストする
+  test "should like and unlike a user" do
+    michael = users(:michael)
+    archer  = users(:archer)
+    assert_not michael.liking?(archer)
+    michael.like(archer)
+    assert michael.liking?(archer)
+    assert archer.likeds.include?(michael)
+    michael.unlike(archer)
+    assert_not michael.liking?(archer)
+  end
+
 end
