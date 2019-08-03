@@ -12,8 +12,8 @@
           <div class="col s12 m5 l2">
             <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
             <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card">
-            <% if @user == current_user%>
-              <%= link_to "登録解除", book_path(book), method: :delete, data: { confirm: "You sure?" } %>
+            <% if @user == current_user %>
+              <%= link_to "登録解除", book, method: :delete, data: { confirm: "You sure?" } %>
             <% end %>
           </div>
           <% end %>
@@ -22,7 +22,7 @@
 
       <div class="comments card-panel">
         <p>コメント(本棚の説明)</p>
-        <% if current_user == @user %>
+        <% if current_user?(@user) %>
           <div class="input-field col s12">
             <%= form_tag("/users/#{@user.id}") do %>
                 <textarea id="textarea1" class="materialize-textarea" name="comments" placeholder="コメントを入力"><%= @user.comments %></textarea>
@@ -30,7 +30,7 @@
             <% end %>
           </div>
         <% else %>
-          <p><%= @user.comments %></p>
+          <pre><%= @user.comments %></pre>
         <% end %>
       </div>
     </div>
