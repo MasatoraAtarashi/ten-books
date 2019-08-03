@@ -89,6 +89,25 @@ body,h4 {
   }
 }
 
+#count {
+  padding: 0px;
+}
+
+#icon-count {
+  vertical-align: bottom;
+  color: #89c600;
+}
+
+#text1 {
+  vertical-align: bottom;
+  font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif;
+  line-height: 24px;
+  font-size: 20px;
+  font-style: normal;
+  display: inline-block;
+  color: #89c600;
+}
+
 #people {
   width: 70%;
 }
