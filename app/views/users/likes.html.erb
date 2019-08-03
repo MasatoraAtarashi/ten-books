@@ -1,0 +1,14 @@
+<h4>お気に入りの本棚一覧</h4>
+<br>
+<% if @users.any? %>
+  <ul class="collection">
+
+    <% @users.each do |user| %>
+      <li class="collection-item avatar">
+        <img src="" alt="" class="circle">
+        <span class="title"><%= link_to user.name, user %></span>
+      </li>
+    <% end %>
+  </ul>
+  <%= will_paginate @users %>
+<% end %>

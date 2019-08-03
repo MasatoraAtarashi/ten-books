@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :users
+  resources :users do
+    member do
+      get :likes
+    end
+  end
   post '/users/:id', to: 'users#update'#patchをpostでやるため
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
