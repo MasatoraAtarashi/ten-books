@@ -21,10 +21,20 @@
       </div>
 
       <div class="comments card-panel">
-        <p>コメント</p>
-        <p><%= @user.comments %></p>
+        <p>コメント(本棚の説明)</p>
+        <% if current_user == @user %>
+          <div class="input-field col s12">
+            <%= form_tag("/users/#{@user.id}") do %>
+                <textarea id="textarea1" class="materialize-textarea" name="comments" placeholder="コメントを入力"><%= @user.comments %></textarea>
+              <button class="btn waves-effect waves-light btn-small" type="submit" name="action">コメントを保存</button>
+            <% end %>
+          </div>
+        <% else %>
+          <p><%= @user.comments %></p>
+        <% end %>
       </div>
     </div>
+
 
   <% if current_user %>
   <% if current_user.admin? && !current_user?(@user) %>
