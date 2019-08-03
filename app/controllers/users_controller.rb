@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  
+
   def show
     @user = User.find(params[:id])
     @books = Book.where(user_id: @user.id)
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       flash[:success] = "ようこそ！会員登録ありがとうございます！"
       redirect_to @user
     else
-      render 'new' 
+      render 'new'
     end
    end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
      if @user.update_attributes(user_params)
        flash[:success] = "プロフィールが更新されました"
        redirect_to @user
-     else 
+     else
        render 'edit'
      end
    end
@@ -47,9 +47,9 @@ class UsersController < ApplicationController
 
    private
     def user_params
-      params.permit(:name, :email, :password, :password_confirmation)
+      params.permit(:name, :email, :password, :password_confirmation, :comments)
     end
-    
+
     # 正しいユーザーかどうか確認
     def correct_user
       @user = User.find(params[:id])
