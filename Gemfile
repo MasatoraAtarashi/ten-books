@@ -34,6 +34,8 @@ gem 'googlebooks', '~> 0.0.9'
 # 検索
 gem 'search_cop'
 
+gem 'seed_dump'
+
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
 end

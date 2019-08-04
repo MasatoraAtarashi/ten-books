@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
    before_action :logged_in_user
-   before_action :correct_user,   only: :destroy
+   before_action :correct_user, only: :destroy
 
   # 検索ボックスの内容をもとに書籍を検索して表示する
   def show

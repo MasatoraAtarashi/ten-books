@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_08_03_191933) do
     t.bigint "isbn"
     t.string "info_link"
     t.index ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
-    t.index ["user_id", "isbn"], name: "index_books_on_user_id_and_isbn", unique: true
+    t.index ["user_id", "isbn", "title"], name: "index_books_on_user_id_and_isbn_and_title", unique: true
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
