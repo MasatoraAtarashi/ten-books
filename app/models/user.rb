@@ -30,6 +30,17 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  # 本棚のランキングを返す
+  def self.rank_shelves
+    sql = 'SELECT liked_id FROM likes GROUP BY liked_id ORDER BY count(*) desc LIMIT 6;'
+    user_ids = ActiveRecord::Base.connection.execute(sql).to_a
+    shelves = []
+    user_ids.each do |user_id|
+      shelves << User.find_by(id: user_id)
+    end
+    return shelves
+  end
+
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token

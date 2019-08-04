@@ -19,10 +19,14 @@
 
 #profile {
   border: none;
+  padding: 0;
+}
+
+#profile-item {
+  padding: 0;
 }
 
 #profile-image {
-  align-items: center;
   position: relative;
   margin-bottom: 5px;
 }
