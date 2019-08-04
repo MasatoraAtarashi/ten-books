@@ -1,0 +1,23 @@
+<!-- おすすめの人 -->
+<div class="container" id="people">
+  <h4>本棚のランキング</h4>
+  <div class="section">
+      <div class="row">
+        <% @rank_shelves.each do |shelf| %>
+          <div class="col s12 m2">
+                <% unless shelf.nil? %>
+                  <% shelf.picture? ? image_url = shelf.picture :  image_url = '/images/default.png' %>
+                  <a href="<%= "/users/#{shelf.id}" %>"><img src="<%= image_url %>" alt="bookimage" width="128px" height="182px" class="circle"></a>
+                  <div class="">
+                    <a href="<%= "/users/#{shelf.id}" %>"><p style="font-size:0.1em;"><%= shelf.name.truncate(12) %><%= "(#{shelf.job.truncate(12)})" if shelf.job? %></p></a>
+                  </div>
+                  <div class="card-content right" id="count">
+                    <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= shelf.likeds.count %></i></span>
+                  </div>
+                <% end %>
+          </div>
+        <% end %>
+      </div>
+    <br><br>
+  </div>
+</div>

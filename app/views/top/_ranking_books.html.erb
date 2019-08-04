@@ -1,0 +1,24 @@
+<!-- ランキング -->
+<div class="container" id="rank">
+  <h4>本のランキング</h4>
+  <div class="section">
+    <!--   Card Section   -->
+    <div class="row">
+      <% @rank_books.each_with_index do |book, i| %>
+        <div class="col s12 m2">
+          <div class="card">
+            <div class="card-image">
+              <% unless book.nil? %>
+                <a href="<%= book[2] %>"><img src="<%= book[1] %>" alt="bookimage" width="128px" height="182px"></a>
+                <div class="card-content right" id="count">
+                  <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= book[3] %></i></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br><br>
+</div>

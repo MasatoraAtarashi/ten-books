@@ -38,7 +38,7 @@ body,h4 {
 
 #search-form {
   position: fixed;
-  right: 180px;
+  right: 150px;
   height: 30px;
   margin-right: 0px;
 }
@@ -69,6 +69,17 @@ body,h4 {
 #search-button {
   margin-left: 5px;
   margin-right: 0px;
+}
+
+#index_link {
+  position: fixed;
+  right: 70px;
+}
+
+#account_box {
+  position: fixed;
+  right: 20px;
+  margin-top: 12px;
 }
 
 #dropdown1 {
@@ -128,9 +139,22 @@ body,h4 {
 
 /* footer */
 footer {
-  width: 100%;
-  margin: 0;
+  position: relative;
+  left: 10%;
+  border-top: solid #eee 1px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(238, 238, 238);
+  text-align: center;
+  width: 80%;
+}
+
+#footer-text {
   padding: 0;
+  margin: 0;
+  color: gray;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 5px;
 }
 
 #toast-container {

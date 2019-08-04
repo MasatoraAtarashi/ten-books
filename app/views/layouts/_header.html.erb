@@ -1,0 +1,41 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <%= link_to "10ブックス", root_path, id: "brand-logo"%>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if logged_in? %>
+          <!-- Seach box -->
+          <li>
+            <span class="col s12" id="search-form">
+              <span class="input-field col s12">
+                <input type="textarea" id="search-field" placeholder="本のタイトル、著者名" name="keyword">
+                <a href="#" id="search-button" class="waves-effect waves-light btn-small">検索</a>
+              </span>
+            </span>
+          </li>
+
+          <a href='/users' class="center" id="index_link"><i class="material-icons prefix">apps</i></a>
+
+          <!-- Dropdown Trigger -->
+          <a class='dropdown-trigger' href='#' data-target='dropdown1'>
+            <% current_user.picture? ? image_url = current_user.picture.url :  image_url = '/images/default.png' %>
+            <img src="<%= image_url %>" alt="" class="circle center-align" height="40px;" width="40px;" id="account_box">
+          </a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><%= link_to "ホーム", current_user %></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><%= link_to "設定", edit_user_path(current_user) %></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><%= link_to "お気に入り", likes_user_path(current_user) %></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <li><a href="/#about">about</a></li>
+          <li><a href="/signup">signup</a></li>
+          <li><a href="/login">login</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,7 @@
+<div class="row center">
+  <% if logged_in? %>
+    <%= link_to "explore", users_path, class: "btn-large waves-effect waves-light orange", id: "download-button" %>
+  <% else %>
+    <%= link_to "Get Started", signup_path, class: "btn-large waves-effect waves-light orange", id: "download-button" %>
+  <% end %>
+</div>
