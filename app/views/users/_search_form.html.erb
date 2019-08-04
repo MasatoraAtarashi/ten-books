@@ -1,0 +1,23 @@
+<span class="col s12 left">
+  <span class="input-field col s12">
+    <input type="textarea" id="shelf-search-field" placeholder="ユーザー名、職業" name="keyword" style="height:32.4px;">
+    <a href="#" id="shelf-search-button" class="waves-effect waves-light btn-small">本棚を検索</a>
+  </span>
+</span>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems);
+  });
+
+  $(function() {
+    // テキストフォームを監視して入力があるたびに実行
+    $('#shelf-search-field').change(function() {
+        // テキストを取得
+        var param = $(this).val();
+        // リンクを書き換え
+        $('#shelf-search-button').attr('href', '/users/search/' + param);
+    });
+  });
+</script>

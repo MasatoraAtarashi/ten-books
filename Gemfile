@@ -14,7 +14,7 @@ gem 'rb-readline'
 
 #materialize
 gem 'materialize-sass', '~> 1.0.0'
-gem 'material_icons' 
+gem 'material_icons'
 gem 'jquery-rails'
 
 #暗号化
@@ -30,6 +30,9 @@ gem 'bootsnap', require: false
 
 # google book api
 gem 'googlebooks', '~> 0.0.9'
+
+# 検索
+gem 'search_cop'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include SearchCop
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -17,6 +18,9 @@ class User < ApplicationRecord
                    foreign_key: "liked_id",
                    dependent:   :destroy
   has_many :likeds, through: :passive_relationships, source: :user
+  search_scope :search do
+    attributes :name, :job
+  end
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
