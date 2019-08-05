@@ -13,6 +13,10 @@
   }
 }
 
+#shelf {
+  padding-left: 7.5%;
+}
+
 #favorite-text {
   color: white;
 }
@@ -43,4 +47,8 @@
   left: 25%;
   width: 50%;
   position: relative;
+}
+
+#comment {
+  word-break: break-all;
 }

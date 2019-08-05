@@ -3,7 +3,7 @@
 
     <% @users.each do |user| %>
       <li class="collection-item avatar">
-        <% user.picture? ? image_url = user.picture.url :  image_url = '/images/default.png' %>
+        <% user.picture? ? image_url = user.picture.url :  image_url = '/assets/default.png' %>
         <img src="<%= image_url %>" alt="" class="circle center-align">
         <span class="title"><%= link_to user.name, user %></span>
         <p><%= user.job %><br>

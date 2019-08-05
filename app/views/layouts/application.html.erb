@@ -34,20 +34,3 @@
     <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
-
-<script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems);
-  });
-
-  $(function() {
-    // テキストフォームを監視して入力があるたびに実行
-    $('#search-field').change(function() {
-        // テキストを取得
-        var param = $(this).val();
-        // リンクを書き換え
-        $('#search-button').attr('href', '/books/' + param);
-    });
-  });
-</script>

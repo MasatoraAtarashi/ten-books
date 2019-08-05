@@ -2,7 +2,7 @@
   <tbody>
     <tr>
       <td>プロフィール画像</td>
-      <td><% @user.picture? ? image_url = @user.picture.url :  image_url = '/images/default.png' %>
+      <td><% @user.picture? ? image_url = @user.picture.url :  image_url = '/assets/default.png' %>
       <img class="avatar" width="200" height="200" src="<%= image_url %>"></td>
     </tr>
   </tbody>
@@ -12,6 +12,9 @@
   <%= form_for(current_user, url: { action: 'update_image' }) do |f| %>
     <div class="picture">
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'%>
+      <p>
+        <%= f.check_box :remove_picture, label: 'Remove Image', id: "indeterminate-checkbox"%><label for="user_remove_picture">Remove Image</label>
+      </p>
     </div><br>
     <%= f.submit "変更", class: "btn-large" %>
   <% end %>

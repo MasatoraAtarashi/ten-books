@@ -9,7 +9,7 @@
 
       <ul class="collection center-align" id="profile">
         <li class="collection-item avatar center-align" id="profile-item">
-          <% @user.picture? ? image_url = @user.picture.url :  image_url = '/images/default.png' %>
+          <% @user.picture? ? image_url = @user.picture.url :  image_url = '/assets/default.png' %>
           <img src="<%= image_url %>" alt="" class="circle center-align" id="profile-image">
           <p><%= @user.name %>さん<%= "(#{@user.job})" if @user.job? %>の10冊</p>
         </li>
@@ -19,9 +19,9 @@
       <div class="row card" id="shelf">
         <% @books.each do |book| %>
           <% unless book.nil? %>
-          <div class="col s12 m5 l2">
+          <div class="col">
             <% book.image_link.nil? ? image_link = 'https://books.google.com/books/content?id=p1-htgAACAAJ&printsec=frontcover&img=1&zoom=6&source=gbs_api' : image_link = book.image_link %>
-            <img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card">
+            <a href="<%= book.info_link %>"><img src="<%= image_link %>" alt="bookimage" width="128px" height="182px" class="materialbox card"></a><br>
             <% if @user == current_user%>
               <%= link_to "登録解除", book_path(book), method: :delete, data: { confirm: "You sure?" } %>
             <% end %>
@@ -30,7 +30,7 @@
         <% end %>
       </div>
 
-      <div class="comments card-panel">
+      <div class="comments card-panel" id="comment-zone">
         <p>コメント(本棚の説明)</p>
         <% if current_user?(@user) %>
           <div class="input-field col s12">
@@ -40,7 +40,7 @@
             <% end %>
           </div>
         <% else %>
-          <pre><%= @user.comments %></pre>
+          <%= simple_format(@user.comments) %>
         <% end %>
       </div>
     </div>

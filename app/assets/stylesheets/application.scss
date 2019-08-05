@@ -21,6 +21,7 @@ $primary-color: color("green", "darken-2") !default;
 #brand-logo {
   margin-left: 10px;
   font-size: 30px;
+  font-family: Optima;
 }
 
 #nav-mobile {
@@ -166,4 +167,10 @@ footer {
 // pagination
 .pagination li.active a {
   color: #fff;
+}
+
+#indeterminate-checkbox {
+  position: relative;
+  pointer-events: visibleFill;
+  opacity: inherit;
 }

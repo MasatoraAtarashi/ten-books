@@ -12,12 +12,16 @@
   });
 
   $(function() {
-    // テキストフォームを監視して入力があるたびに実行
     $('#shelf-search-field').change(function() {
-        // テキストを取得
-        var param = $(this).val();
-        // リンクを書き換え
-        $('#shelf-search-button').attr('href', '/users/search/' + param);
+      var param = $(this).val();
+      var url;
+      // スラッシュをエスケープ(他にもしないといけないかも)
+      param = param.replace(/\//g, '').replace(/\s/g, '')
+      url = '/users/search/' + param;
+      if(!param) {
+        url = location.href;
+      }
+      $('#shelf-search-button').attr('href', url);
     });
   });
 </script>

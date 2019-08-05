@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy, :likes]
   before_action :correct_user, only: [:edit, :update, :edit_image, :update_image]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user, only: :destroy
 
   def show
     @user = User.find(params[:id])
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     end
 
     def fileupload_params
-      params.require(:user).permit(:picture)
+      params.require(:user).permit(:picture, :remove_picture)
     end
 
     # 正しいユーザーかどうか確認

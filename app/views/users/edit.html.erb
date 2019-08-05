@@ -51,7 +51,7 @@
             <div class="row">
               <ul class="collection" id="edit-collection">
               <li class="collection-item avatar">
-                <% @user.picture? ? image_url = @user.picture.url :  image_url = '/images/default.png' %>
+                <% @user.picture? ? image_url = @user.picture.url :  image_url = '/assets/default.png' %>
                 <img src="<%= image_url %>" alt="" class="circle">
                 プロフィール画像 : <%= link_to("変更はこちらから", "/users/#{@user.id}/image") %>
               </li>
