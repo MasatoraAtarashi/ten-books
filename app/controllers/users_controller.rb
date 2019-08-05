@@ -47,7 +47,7 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      if @user.update_attributes(fileupload_params)
        flash[:success] = "プロフィール画像が更新されました"
-       redirect_to @user
+       redirect_to "/users/#{@user.id}/image"
      else
        render 'edit_image'
      end
