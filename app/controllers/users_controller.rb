@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy, :likes]
-  before_action :correct_user, only: [:edit, :update, :edit_image, :update_image]
+  before_action :logged_in_user, only: [:edit, :update, :edit_image, :update_image, :destroy, :likes]
+  before_action :correct_user, only: [:edit, :update, :edit_image, :update_image, :likes]
   before_action :admin_user, only: :destroy
 
   def show
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
    def index
      if params[:key]
-       @users = User.search(params[:key]).to_a.paginate(page: params[:page], :per_page => 10)
+       @users = User.search(params[:key]).to_a.paginate(page: params[:page], per_page: 10)
      else
        @users = User.all.to_a.paginate(page: params[:page], :per_page => 10)
      end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  
+
   def setup
     @user = User.new(name: "Example", email: "user@example.com",
                     password: "password", password_confirmation: "password")
@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "a" * 17
     assert_not @user.valid?
   end
-  
+
   test "name should have a minimum length" do
     @user.name = "a" * 2
     assert_not @user.valid?
@@ -37,9 +37,9 @@ class UserTest < ActiveSupport::TestCase
     @user.name = "a" * 244 + "@example.com"
     assert_not @user.valid?
   end
-  
+
   test "email validation should accept valid addresses" do
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org 
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
               first.last@foo.jp alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
       @user.email = valid_address
@@ -75,7 +75,7 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
-  
+
   test "password should not be too long" do
     @user.password = @user.password_confirmation = "a" * 17
     assert_not @user.valid?
@@ -89,6 +89,15 @@ class UserTest < ActiveSupport::TestCase
   # ダイジェストが存在しない場合のauthenticated?のテスト
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+
+  # has_many: :destroyのテスト
+  test "associated books should be destroyed" do
+    @user.save
+    @user.books.create!()
+    assert_difference 'Book.count', -1 do
+      @user.destroy
+    end
   end
 
   # like関連のメソッドをテストする

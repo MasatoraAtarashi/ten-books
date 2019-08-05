@@ -1,0 +1,15 @@
+one:
+  user: michael
+  liked: lana
+
+two:
+  user: michael
+  liked: malory
+
+three:
+  user: lana
+  liked: michael
+
+four:
+  user: malory
+  liked: michael
