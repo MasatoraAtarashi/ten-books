@@ -1,0 +1,18 @@
+<br>
+<h4>登録されている本一覧</h4>
+<br>
+<ul class="collection with-header" id="collection-header">
+  <% @books.each do |book| %>
+    <li class="collection-item">
+      <% unless book.nil? %>
+        <img src="<%= book[1] %>" alt="bookimage" width="128px" height="182px">
+        <%= book[0].truncate(40) unless book[0].nil? %>
+        /<%= book[4].truncate(24) unless book[4].nil? %>
+        /<%= book[5].truncate(24)unless book[5].nil? %>
+        <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= book[3] %></i></span>
+        <a href="#" class="btn btn-small right">コメントを読む</a>
+      <% end %>
+    </li>
+  <% end %>
+  <%= will_paginate @books %>
+</ul>

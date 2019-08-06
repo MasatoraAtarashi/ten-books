@@ -23,7 +23,7 @@
         var url;
         // スラッシュをエスケープ(他にもしないといけないかも)
         param = param.replace(/\//g, '').replace(/\s/g, '')
-        url = '/books/' + param;
+        url = '/books/search/' + param;
         if(!param) {
           url = location.href;
         }

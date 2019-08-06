@@ -12,7 +12,7 @@ class Book < ApplicationRecord
 
   # 本のランキングを返す(すべて)
   def self.rank_books_all
-    sql = 'SELECT title, image_link, info_link, count(*) as count FROM books GROUP BY title, image_link, info_link ORDER BY count desc LIMIT 6;'
+    sql = 'SELECT title, image_link, info_link, count(*) as count, authors, published_date FROM books GROUP BY title, image_link, info_link, authors, published_date ORDER BY count desc;'
     ActiveRecord::Base.connection.execute(sql).to_a
   end
 end

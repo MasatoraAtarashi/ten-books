@@ -14,8 +14,8 @@ class BooksInterfaceTest < ActionDispatch::IntegrationTest
     isbn = '1784274367991'
     # 本を検索
     # 空白とか/とかのエスケープ処理はjqueryでやってるからどうやってテストするかわからない
-    get "/books/#{keyword}"
-    assert_template 'books/show'
+    get "/books/search/#{keyword}"
+    assert_template 'books/search'
     assert_select 'li.collection-item'
     assert_match keyword, response.body
     assert_select 'button', '本棚に追加'

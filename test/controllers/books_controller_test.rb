@@ -16,11 +16,6 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
 
   # Booksコントローラの認可テスト
   # logged_in_user
-  test "should redirect show when not logged in" do
-    get book_path('moneyball')
-    assert_redirected_to login_url
-  end
-
   test "should redirect create when not logged in" do
     assert_no_difference 'Book.count' do
       post books_path, params: { }
