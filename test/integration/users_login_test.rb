@@ -38,7 +38,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
-    assert_select "span.input-field", count: 0
+    assert_select "span.input-field", count: 1
   end
 
   # [remember me] チェックボックスのテスト

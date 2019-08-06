@@ -63,7 +63,8 @@ class UsersController < ApplicationController
      if params[:key]
        @users = User.search(params[:key]).to_a.paginate(page: params[:page], per_page: 10)
      else
-       @users = User.all.to_a.paginate(page: params[:page], :per_page => 10)
+       # いいね数順
+       @users = User.rank_shelves_all.paginate(page: params[:page], :per_page => 10)
      end
    end
 

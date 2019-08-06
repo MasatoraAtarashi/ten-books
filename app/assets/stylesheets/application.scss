@@ -25,7 +25,12 @@ $primary-color: color("green", "darken-2") !default;
 }
 
 #nav-mobile {
-  margin-right: 10px;
+  margin: 0;
+}
+
+#nav-mobile2 {
+  margin: 0;
+  width: 45%;
 }
 
 /* トップページ */
@@ -37,16 +42,26 @@ body,h4 {
   font-family: "ヒラギノ明朝 Pro","Hiragino Mincho Pro";
 }
 
+h4 {
+  display: inline;
+}
+
 #search-form {
   position: fixed;
   right: 150px;
   height: 30px;
-  margin-right: 0px;
+  margin-right: 10px;
+}
+
+#search-form2 {
+  position: relative;
+  height: 30px;
+  margin-right: 10px;
 }
 
 #index_link {
   position: fixed;
-  right: 100px;
+  right: 70px;
 }
 
 #search-field {
@@ -70,11 +85,6 @@ body,h4 {
 #search-button {
   margin-left: 5px;
   margin-right: 0px;
-}
-
-#index_link {
-  position: fixed;
-  right: 70px;
 }
 
 #account_box {
@@ -136,6 +146,7 @@ body,h4 {
 
 #people {
   width: 70%;
+  margin-top: 20px;
 }
 
 /* footer */

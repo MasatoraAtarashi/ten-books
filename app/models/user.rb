@@ -45,6 +45,17 @@ class User < ApplicationRecord
     return shelves
   end
 
+  # 本棚のランキングを返す(すべての本棚)
+  def self.rank_shelves_all
+    sql = 'SELECT shelf.id FROM ( (SELECT users.id, count(*) as i FROM users JOIN likes on users.id = likes.liked_id GROUP BY likes.liked_id ORDER BY i ) UNION (SELECT users.id, 0 as i FROM users LEFT JOIN likes ON users.id = likes.liked_id WHERE liked_id is null) ) as shelf ORDER BY shelf.i desc;'
+    user_ids = ActiveRecord::Base.connection.execute(sql).to_a
+    shelves = []
+    user_ids.each do |user_id|
+      shelves << User.find_by(id: user_id)
+    end
+    return shelves
+  end
+
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
     self.remember_token = User.new_token
