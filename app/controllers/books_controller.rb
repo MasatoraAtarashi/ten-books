@@ -35,6 +35,11 @@ class BooksController < ApplicationController
     @books = Book.rank_books_all.paginate(page: params[:page], :per_page => 10)
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @comments = BookComment.where(book_id: @book.id)
+  end
+
   private
     def books_params
       params.permit(:image_link, :title, :authors, :published_date, :isbn, :comments, :info_link)

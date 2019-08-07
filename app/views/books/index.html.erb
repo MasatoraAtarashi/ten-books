@@ -9,8 +9,7 @@
         <%= book[0].truncate(40) unless book[0].nil? %>
         /<%= book[4].truncate(24) unless book[4].nil? %>
         /<%= book[5].truncate(24)unless book[5].nil? %>
-        <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= book[3] %></i></span>
-        <a href="#" class="btn btn-small right">コメントを読む</a>
+        <a href="/books/<%= book[6] %>" class="btn btn-small right">コメントを読む</a>
       <% end %>
     </li>
   <% end %>

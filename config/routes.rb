@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :books, only: [:show, :create, :update, :destroy, :index]
   get '/books/search/:id', to: 'books#search'
   resources :likes, only: [:create, :destroy]
+  resources :book_comments, only: [:destroy]
+  post '/book_comments/:id', to: 'book_comments#update'
 end

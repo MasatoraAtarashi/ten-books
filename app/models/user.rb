@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { maximum: 16, minimum: 6 }, allow_nil: true
   has_many :books, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
   has_many :active_relationships, class_name: "Like",
                    foreign_key: "user_id",
                    dependent:   :destroy

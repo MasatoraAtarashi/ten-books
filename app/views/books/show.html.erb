@@ -1,1 +1,37 @@
-unko
+<div class="container center-align" id="book-show">
+  <div class="row card">
+      <div class="col">
+        <h5 class="left"><%= @book.title.truncate(30) %></h5><br>
+          <div class="left">
+            <p class="left p-book" id="author">著者: <%= @book.authors.truncate(13) unless @book.authors.nil? %></p>
+            <p class="left p-book" id="publish">/出版日: <%= @book.published_date.truncate(13)  unless @book.published_date.nil? %></p>
+            <p class="left p-book" id="isbn">/isbn: <%= @book.isbn.truncate(13) unless @book.isbn.nil? %></p>
+          </div><br><br>
+          <img src="<%= @book.image_link %>" alt="bookimage" class="materialbox card left" id="book_show_img">
+      </div>
+      <p class="right" id="link"><a href="<%= @book.info_link unless @book.info_link.nil? %>">Googleで見る</a></p>
+  </div>
+
+  <div class="comments card-panel" id="book-comment-zone">
+    <p>コメント</p>
+      <% if logged_in? && current_user?(User.find_by(id: @book.user_id)) %>
+        <div class="input-field col s12">
+          <%= form_tag("/book_comments/#{@book.id}") do %>
+            <% if @comments.empty? %>
+              <textarea id="textarea1" class="materialize-textarea" name="content" placeholder="コメントを入力"></textarea>
+            <% else %>
+              <% @comments.each do |comment| %>
+                <textarea id="textarea1" class="materialize-textarea" name="content" placeholder="コメントを入力"><%= comment.content %></textarea>
+              <% end %>
+            <% end %>
+            <button class="btn waves-effect waves-light btn-small" type="submit" name="action">コメントを保存</button>
+          <% end %>
+        </div>
+      <% else %>
+        <% @comments.each do |comment| %>
+          <%= simple_format(comment.content) unless comment.nil? %>
+          <a href="/users/<%= User.find_by(id: comment.user_id).id %>">by <%= User.find_by(id: comment.user_id).name %></a>
+        <% end %>
+      <% end %>
+  </div>
+</div>

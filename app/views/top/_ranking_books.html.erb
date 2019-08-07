@@ -11,7 +11,7 @@
           <div class="card">
             <div class="card-image">
               <% unless book.nil? %>
-                <a href="<%= book[2] %>"><img src="<%= book[1] %>" alt="bookimage" width="128px" height="182px"></a>
+                <a href="/books/<%= Book.find_by(title: book[0], info_link: book[2]).id %>"><img src="<%= book[1] %>" alt="bookimage" width="128px" height="182px"></a>
                 <div class="card-content right" id="count">
                   <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= book[3] %></i></span>
                 </div>
