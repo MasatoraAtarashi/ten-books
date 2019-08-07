@@ -9,7 +9,7 @@
 * デプロイ(heroku)
 * テスト(minitest)
 * ユーザー有効化とパスワードリセット(ActionMailer)
-* ページネーション(will_paginate)
+* ページネーション(kaminari)
 * ユーザー登録機能
 * 認証機能
 * 書籍検索機能(google books api)

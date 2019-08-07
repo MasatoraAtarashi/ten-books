@@ -61,16 +61,19 @@ class UsersController < ApplicationController
 
    def index
      if params[:key]
-       @users = User.search(params[:key]).to_a.paginate(page: params[:page], per_page: 10)
+       @users = User.search(params[:key]).to_a
+       @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
      else
        # いいね数順
-       @users = User.rank_shelves_all.paginate(page: params[:page], :per_page => 10)
+       @users = User.rank_shelves_all
+       @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
      end
    end
 
    def likes
     @user = User.find(params[:id])
-    @users = @user.likes.to_a.paginate(page: params[:page], :per_page => 10)
+    @users = @user.likes.to_a
+    @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
    end
 
    private

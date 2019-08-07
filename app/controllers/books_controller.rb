@@ -5,7 +5,8 @@ class BooksController < ApplicationController
   # 検索ボックスの内容をもとに書籍を検索して表示する
   def search
     @keyword = params[:id]
-    @books = GoogleBooks.search(@keyword, {:count => 40}).to_a.paginate(page: params[:page], :per_page => 10)
+    @books = GoogleBooks.search(@keyword, {:count => 40}).to_a
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
   end
 
   # 本棚に本データを追加する(十冊を選ぶ)
@@ -32,7 +33,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.rank_books_all.paginate(page: params[:page], :per_page => 10)
+    @books = Book.rank_books_all
+    @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
   end
 
   def show
