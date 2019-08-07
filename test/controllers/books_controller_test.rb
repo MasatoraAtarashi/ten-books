@@ -8,9 +8,9 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @book = books(:moneyball)
   end
 
-  test "should get show" do
+  test "should get search" do
     log_in_as(@user)
-    get book_path('moneyball')
+    get "/books/search/moneyball"
     assert_response :success
   end
 
