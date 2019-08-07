@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
    private
     def user_params
-      params.permit(:name, :email, :password, :password_confirmation, :comments, :job)
+      params.permit(:name, :email, :password, :password_confirmation, :comments, :job, :picture)
     end
 
     def fileupload_params

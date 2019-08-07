@@ -12,6 +12,7 @@
 * ページネーション(kaminari)
 * ユーザー登録機能
 * 認証機能
+* SNSによるログイン機能(omniauth-facebook)
 * 書籍検索機能(google books api)
 * 書籍登録機能
 * 書籍にコメントをつける機能
@@ -48,6 +49,7 @@
 *  has_many :book_comments
 *  has_many :active_relationships
 *  has_many :passive_relationships
+*  has_many :authorizations
 
 ### Booksテーブル
 | column | type | option |
@@ -94,3 +96,17 @@
 ##### association
 *  belongs_to :user
 *  belongs_to :book
+
+### Authorizationテーブル
+| column | type | option |
+|:-----------|------------:|:------------:|
+| id | integer | null: false |
+| provider | string | |
+| uid | string | |
+| user_id | bigint | |
+| created_at | datetime | null: false |
+| updated_at | datetime  | null: false |
+
+
+##### association
+*  belongs_to :user

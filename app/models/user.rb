@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 16, minimum: 3 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  has_secure_password
+  has_secure_password validations: false
   validates :password, presence: true, length: { maximum: 16, minimum: 6 }, allow_nil: true
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
@@ -22,6 +22,7 @@ class User < ApplicationRecord
   search_scope :search do
     attributes :name, :job
   end
+  has_many :authorizations
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
@@ -55,6 +56,16 @@ class User < ApplicationRecord
       shelves << User.find_by(id: user_id)
     end
     return shelves
+  end
+
+  def self.create_from_auth!(auth)
+  #authの情報を元にユーザー生成の処理を記述
+  #auth["credentials"]にアクセストークン、シークレットなどの情報が入ってます。
+  #auth["info"]["email"]にユーザーのメールアドレスが入ってます。(Twitterはnil)
+    name = auth[:info][:name]
+    email = auth[:info][:email]
+    picture = auth[:info][:image]
+    user = User.create(name: name, email: email, picture: picture)
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する

@@ -3,17 +3,27 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:email].downcase)
-    if @user && @user.authenticate(params[:password])
+    auth = request.env["omniauth.auth"]
+    if auth.present?
+      unless @auth = Authorization.find_from_auth(auth)
+        @auth = Authorization.create_from_auth(auth)
+      end
+      @user = @auth.user
       log_in @user
-      p params[:remember_me]
       params[:remember_me] == 'on' ? remember(@user) : forget(@user)
       redirect_back_or @user
     else
-      flash.now[:danger] = 'アカウント名またはパスワードが正しくありません。'
-      @email = params[:email]
-      @password = params[:password]
-      render 'new'
+      @user = User.find_by(email: params[:email].downcase)
+      if @user && @user.authenticate(params[:password])
+        log_in @user
+        params[:remember_me] == 'on' ? remember(@user) : forget(@user)
+        redirect_back_or @user
+      else
+        flash.now[:danger] = 'アカウント名またはパスワードが正しくありません。'
+        @email = params[:email]
+        @password = params[:password]
+        render 'new'
+      end
     end
   end
 

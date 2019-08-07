@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   resources :book_comments, only: [:destroy]
   post '/book_comments/:id', to: 'book_comments#update'
+  get 'auth/:provider/callback', to: 'sessions#create'
 end

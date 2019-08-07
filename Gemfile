@@ -37,6 +37,11 @@ gem 'search_cop'
 
 gem 'seed_dump'
 
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
 end
