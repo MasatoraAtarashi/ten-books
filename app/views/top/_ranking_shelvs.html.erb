@@ -11,7 +11,7 @@
                   <% shelf.picture? ? image_url = shelf.picture :  image_url = '/images/default.png' %>
                   <a href="<%= "/users/#{shelf.id}" %>"><img src="<%= image_url %>" alt="bookimage" width="128px" height="182px" class="circle"></a>
                   <div class="">
-                    <a href="<%= "/users/#{shelf.id}" %>"><p style="font-size:0.1em;"><%= shelf.name.truncate(12) %><%= "(#{shelf.job.truncate(8)})" if shelf.job? %></p></a>
+                    <a href="<%= "/users/#{shelf.id}" %>"><p style="font-size:0.1em;"><%= shelf.name.truncate(12) %><%= "(#{shelf.job.truncate(6)})" if shelf.job? %></p></a>
                   </div>
                   <div class="card-content right" id="count">
                     <span><i class="material-icons" id="icon-count">person</i><i id="text1"><%= shelf.likeds.count %></i></span>
