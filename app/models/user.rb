@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 16, minimum: 3 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  has_secure_password validations: false
+  has_secure_password
   validates :password, presence: true, length: { maximum: 16, minimum: 6 }, allow_nil: true
   has_many :books, dependent: :destroy
   has_many :book_comments, dependent: :destroy
@@ -59,9 +59,6 @@ class User < ApplicationRecord
   end
 
   def self.create_from_auth!(auth)
-  #authの情報を元にユーザー生成の処理を記述
-  #auth["credentials"]にアクセストークン、シークレットなどの情報が入ってます。
-  #auth["info"]["email"]にユーザーのメールアドレスが入ってます。(Twitterはnil)
     name = auth[:info][:name]
     email = auth[:info][:email]
     picture = auth[:info][:image]
