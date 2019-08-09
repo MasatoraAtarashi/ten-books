@@ -13,7 +13,7 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">mail</i>
-                <input id="email" type="email" class="validate" name="email" id="email" value="<%= @email %>">
+                <input id="email" type="email" class="validate" name="email" id="email" value="<%= @email ? @email : 'test@test.com' %>">
                 <label for="email">メールアドレス</label>
               </div>
             </div>
@@ -21,13 +21,12 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate" data-length="16" name="password" value="<%= @password %>">
+                <input id="password" type="password" class="validate" data-length="16" name="password" value="<%= @password ? @password : 'password' %>">
                 <label for="password">パスワード</label>
                 <%= link_to "パスワードを忘れた方", new_password_reset_path %>
               </div>
             </div>
-            <p>テストユーザーメールアドレス: test@test.com</p>
-            <p>パスワード: password</p>
+            <p>デフォルトはテストユーザーアカウントです</p>
 
             <label>
               <input type="checkbox" name="remember_me">
