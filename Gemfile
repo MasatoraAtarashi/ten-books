@@ -15,7 +15,7 @@ gem 'rb-readline'
 #materialize
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
-gem 'jquery-rails'
+gem 'jquery-rails', '4.3.1'
 
 #暗号化
 gem 'bcrypt', '3.1.12'
@@ -44,12 +44,14 @@ gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
+  gem 'rspec-rails', '~> 3.6.0'
 end
 
 group :development do
   gem 'web-console',           '3.5.1'
   gem 'listen',                '3.1.5'
   gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
