@@ -16,10 +16,21 @@ RSpec.feature "Books", type: :feature do
     click_button "login-button"
 
     expect(page).to have_content "#{user.name}"
-    # expect {
-    #   fill_in "textarea", with "book"
-    #   click_link "#search-button"
-    #
-    # }
+
+    expect {
+      key = "book"
+      fill_in "search-field", with: key
+      click_link "search-button"
+      expect(page).to have_content "#{key}"
+      click_button "本棚に追加", match: :first
+    }.to change(Book, :count).by(1)
   end
+
+  # アカウント登録
+
+  # お気に入り登録
+
+  # 本のランキング
+
+  # 本棚ランキング
 end
