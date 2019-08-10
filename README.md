@@ -7,7 +7,7 @@
 * データベース(mysql)
 * CSSフレームワーク(materialize)
 * デプロイ(heroku)
-* テスト(minitest)
+* テスト(Rspec,minitest)
 * ユーザー有効化とパスワードリセット(ActionMailer)
 * ページネーション(kaminari)
 * ユーザー登録機能

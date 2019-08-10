@@ -7,5 +7,10 @@ FactoryBot.define do
     isbn "9784274067938"
     info_link "http://books.google.co.jp/books?id=ihd-mwEACAAJ&dq=%E3%83%9E%E3%83%8D%E3%83%BC%E3%83%9C%E3%83%BC%E3%83%AB&hl=&source=gbs_api"
     association :user
+
+    trait :other do
+      title "snowball"
+      isbn "1111111111111"
+    end
   end
 end

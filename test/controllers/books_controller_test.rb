@@ -9,7 +9,6 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get search" do
-    log_in_as(@user)
     get "/books/search/moneyball"
     assert_response :success
   end
