@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = User.new(
-      name: "Example",
-      email: "user@example.com",
-      password: "password",
-      password_confirmation: "password"
-    )
+    @user = FactoryBot.build(:user)
   end
 
   it "is valid with name, email, password and password_confirmation" do
@@ -42,17 +37,13 @@ RSpec.describe User, type: :model do
       context "when format is invalid" do
         it "is invalid when format is invalid"
       end
-      # email 小文字で
+      # email
       it "is invalid with a duplicate email address" do
         @user.save
-        user = User.new(
-          name: "second",
-          email: "user@example.com",
-          password: "password",
-          password_confirmation: "password"
-        )
-        user.valid?
-        expect(user.errors[:email]).to include("has already been taken")
+        duplicate_user = @user.dup
+        duplicate_user.email = @user.email.upcase
+        duplicate_user.valid?
+        expect(duplicate_user.errors[:email]).to include("has already been taken")
       end
 
       #emailのユニーク、大文字でもだめ
