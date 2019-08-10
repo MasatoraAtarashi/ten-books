@@ -16,7 +16,7 @@ RSpec.describe BooksController, type: :controller do
     # 正常
     context "as authenticated user" do
       it "add a book" do
-        other_book = FactoryBot.build(:book, :other, user: @user)
+        other_book = FactoryBot.build(:book, :other)
         log_in @user
         expect {
           post :create, params: { title: other_book.title, isbn: other_book.isbn }
