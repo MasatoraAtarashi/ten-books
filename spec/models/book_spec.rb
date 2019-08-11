@@ -59,9 +59,18 @@ RSpec.describe Book, type: :model do
       expect(book.errors[:user_id]).to include("can't be blank")
     end
   end
-
+  
   describe "class_method" do
-  end
+    describe "rank_books" do
+      it "returns 6 or less books" do
+        expect(Book.rank_books.count).to be <= 6
+      end
+    end
 
-  # ユーザーの持っている本を取得したときに最後に追加したやつが一番最初になっている
+    describe "rank_books_all" do
+      it "returns all books" do
+        expect(Book.rank_books_all.count).to eq Book.count
+      end
+    end
+  end
 end
