@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :isbn, uniqueness: { scope: [:user_id, :title] }
-  has_many :book_comments
+  has_many :book_comments, dependent: :destroy
 
   # 本のランキングを返す(6件)
   def self.rank_books

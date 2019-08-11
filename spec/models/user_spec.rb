@@ -101,22 +101,67 @@ RSpec.describe User, type: :model do
 
   describe "instance method" do
     # authenticated?
-    # 正常系
-    # 失敗のテスト
-    # ダイジェストが存在しない場合のauthenticated?のテスト
+    describe "authenticated?" do
+      it "returns true when token matches with digest" do
+        user.remember
+        expect(user.authenticated?(:remember, user.remember_token)).to be_truthy
+      end
+
+      it "return false for a user with nil digest" do
+        expect(user.authenticated?(:remember, '')).to be_falsey
+      end
+    end
+
     # like関連
-  end
-  describe "class method" do
-    # rank_shelves
-    # rank_shelves_all
-    # 正常系
-    # 失敗のテスト
+    describe "like related methods" do
+      it "likes other user and unlikes them" do
+        aggregate_failures do
+          expect(user.liking?(other_user)).to be_falsey
+          user.like(other_user)
+          expect(user.liking?(other_user)).to be_truthy
+          expect(other_user.likeds).to include user
+          user.unlike(other_user)
+          expect(user.liking?(other_user)).to be_falsey
+        end
+      end
+    end
   end
 
-  # has_many?のテスト+destroy
-  # book
-  # book_comments
-  # active_relationships
-  # passive_relationships
-  # authorizations
+  describe "class method" do
+    # rank_shelves
+    describe "rank_shelves" do
+      it "returns 6 or less shelves" do
+        expect(User.rank_shelves.count).to be <= 6
+      end
+    end
+
+    describe "rank_shelves_all" do
+      it "returns all shelves" do
+        User.all.each do |user|
+          expect(User.rank_shelves_all).to include user
+        end
+      end
+    end
+  end
+
+  describe "associations" do
+    describe "book" do
+      it "will be destroyed when parent is destroyed" do
+        user.books.create()
+        expect {
+          user.destroy
+        }.to change(Book, :count).by(-1)
+      end
+    end
+
+    describe "book_comments" do
+      it "will be destroyed when parent is destroyed" do
+        book = user.books.create()
+        BookComment.create( user_id: user.id, book_id: book.id, content: 'comment')
+        expect {
+          user.destroy
+        }.to change(BookComment, :count).by(-1)
+      end
+    end
+  end
 end

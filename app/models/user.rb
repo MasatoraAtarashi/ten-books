@@ -22,7 +22,7 @@ class User < ApplicationRecord
   search_scope :search do
     attributes :name, :job
   end
-  has_many :authorizations
+  has_many :authorizations, dependent: :destroy
 
   # 渡された文字列のハッシュ値を返す
   def self.digest(string)
