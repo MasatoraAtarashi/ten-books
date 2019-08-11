@@ -103,7 +103,6 @@ class User < ApplicationRecord
 
   # パスワード再設定のメールを送信する
   def send_password_reset_email
-    p "----#{self.reset_token}------"
     UserMailer.password_reset(self).deliver_now
   end
 
