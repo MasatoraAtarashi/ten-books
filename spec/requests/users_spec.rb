@@ -1,7 +1,6 @@
 require 'rails_helper'
 RSpec.describe "Users", type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:user) }
+  include_context "user setup"
 
   describe "show" do
     it "responds successfully" do
@@ -114,9 +113,11 @@ RSpec.describe "Users", type: :request do
       it "redirects root_url" do
         log_in_as other_user
         get "/users/#{user.id}/image"
-        expect(response).to_not be_successful
-        expect(response).to have_http_status "302"
-        expect(response).to redirect_to root_url
+        aggregate_failures do
+          expect(response).to_not be_successful
+          expect(response).to have_http_status "302"
+          expect(response).to redirect_to root_url
+        end
       end
     end
   end
@@ -125,11 +126,15 @@ RSpec.describe "Users", type: :request do
     context "as logged in and correct user" do
       it "updates a user image" do
         log_in_as user
+        expect(user[:picture]).to eq nil
         picture = fixture_file_upload('test/fixtures/rails.png', 'image/png')
         patch "/users/#{user.id}/image", params: { user: { picture: picture } }
         # eqで画像を比べる方法がわからなかった
-        expect(response).to_not be_successful
-        expect(response).to redirect_to "/users/#{user.id}/image"
+        aggregate_failures do
+          expect(user.reload[:picture]).to_not eq nil
+          expect(response).to_not be_successful
+          expect(response).to redirect_to "/users/#{user.id}/image"
+        end
       end
     end
 
@@ -160,7 +165,6 @@ RSpec.describe "Users", type: :request do
       it "deletes a user" do
         admin_user = FactoryBot.create(:user, :admin)
         log_in_as admin_user
-        user #letの遅延評価のため
         expect {
           delete user_path(user)
         }.to change(User, :count).by(-1)
