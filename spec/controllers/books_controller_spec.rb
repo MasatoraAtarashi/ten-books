@@ -7,7 +7,10 @@ RSpec.describe BooksController, type: :controller do
 
   describe "#search" do
     # 正常
-    #
+    it "responds successfully" do
+      post :search, params: { id: 'book' }
+      expect(response).to be_successful
+    end
   end
 
   describe "#create" do
@@ -84,5 +87,9 @@ RSpec.describe BooksController, type: :controller do
 
   describe "#show" do
     # 正常
+    it "responds successfully" do
+      get :show, params: { id: book.id }
+      expect(response).to be_successful
+    end
   end
 end
