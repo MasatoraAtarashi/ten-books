@@ -5,10 +5,6 @@ FactoryBot.define do
     password "password"
     password_confirmation "password"
 
-    trait :activated do
-      activated true
-    end
-
     trait :admin do
       admin true
     end
