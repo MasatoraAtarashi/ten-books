@@ -45,7 +45,7 @@ gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
-  gem 'rspec-rails', '~> 3.6.0'
+  gem 'rspec-rails'
   gem "factory_bot_rails", "~> 4.10.0"
 end
 
@@ -65,6 +65,7 @@ group :test do
   gem 'capybara', '~> 3.25.0'
   gem 'webdrivers'
   gem 'launchy', '~> 2.4.3'
+  gem 'guard-rspec', require: false
 end
 
 group :production do

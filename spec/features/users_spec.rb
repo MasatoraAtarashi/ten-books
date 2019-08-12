@@ -31,6 +31,7 @@ RSpec.feature "Users", type: :feature do
       expect(page).to have_content @other.name
       click_link "User", match: :first
       click_button "お気に入りに登録"
+      expect(page).to have_content "の10冊"
       visit likes_user_path(@other)
     }.to change(Like, :count).by(1)
   end
