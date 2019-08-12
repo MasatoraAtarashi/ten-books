@@ -12,6 +12,8 @@ gem 'mysql2'
 gem 'dotenv-rails'
 gem 'rb-readline'
 
+gem 'google-analytics-rails'
+
 #materialize
 gem 'materialize-sass', '~> 1.0.0'
 gem 'material_icons'
