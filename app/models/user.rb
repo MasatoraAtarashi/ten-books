@@ -61,8 +61,7 @@ class User < ApplicationRecord
   def self.create_from_auth!(auth)
     name = auth[:info][:name]
     email = auth[:info][:email]
-    picture = auth[:info][:image]
-    user = User.create(name: name, email: email, picture: picture)
+    user = User.create(name: name, email: email)
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する
