@@ -22,4 +22,11 @@ Rails.application.routes.draw do
   resources :likes, only: [:create, :destroy]
   post '/book_comments/:id', to: 'book_comments#update'
   get 'auth/:provider/callback', to: 'sessions#create'
+
+  # api
+  namespace :api, {format: 'json'} do
+    namespace :users do
+      get "/" , :action => "index"
+    end
+  end
 end
