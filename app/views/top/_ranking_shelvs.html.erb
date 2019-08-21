@@ -9,7 +9,7 @@
           <div class="col s12 m2">
                 <% unless shelf.nil? %>
                   <% shelf.picture? ? image_url = shelf.picture :  image_url = '/images/default.png' %>
-                  <a href="<%= "/users/#{shelf.id}" %>"><img src="<%= image_url %>" alt="bookimage" width="128px" height="182px" class="circle"></a>
+                  <a href="<%= "/users/#{shelf.id}" %>"><img src="<%= image_url %>" alt="bookimage" width="128px" height="182px" class="circle" lazy: true></a>
                   <div class="">
                     <a href="<%= "/users/#{shelf.id}" %>"><p style="font-size:0.1em;"><%= shelf.name.truncate(12) %><%= "(#{shelf.job.truncate(6)})" if shelf.job? %></p></a>
                   </div>

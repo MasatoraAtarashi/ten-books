@@ -45,6 +45,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 
+gem "lazyload-rails"
+
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri
   gem 'rspec-rails'

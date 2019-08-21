@@ -318,6 +318,8 @@ GEM
     kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lazyload-rails (0.5.0)
+      nokogiri (~> 1.5)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -562,6 +564,7 @@ DEPENDENCIES
   jquery-rails (= 4.3.1)
   kaminari
   launchy (~> 2.4.3)
+  lazyload-rails
   listen (= 3.1.5)
   material_icons
   materialize-sass (~> 1.0.0)
