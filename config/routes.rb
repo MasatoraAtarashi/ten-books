@@ -25,8 +25,6 @@ Rails.application.routes.draw do
 
   # api
   namespace :api, {format: 'json'} do
-    namespace :users do
-      get "/" , :action => "index"
-    end
+    resources :users
   end
 end
